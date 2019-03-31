@@ -33,7 +33,7 @@ int main(int argc, char const *argv[])
     mario.pos_mario.y=79;
     mario.pos_mario.h=32;
     mario.pos_mario.w=32;
-
+	mario.mario_vies=5;
 
 
     initialiser_objet(&coins,ecran);
@@ -48,6 +48,7 @@ int main(int argc, char const *argv[])
              continuer=0;
         break;
         case SDL_KEYDOWN:
+	score_vies(&coins,&mario);
                 switch(event.key.keysym.sym)
                 {
                     case SDLK_0: // Veut arrêter le jeu
@@ -67,8 +68,9 @@ int main(int argc, char const *argv[])
                         break;
                 }
                 break;
+
         }
-    
+    printf("%d",mario.mario_vies);
         SDL_FillRect(ecran, NULL, SDL_MapRGB(ecran->format, 0, 0, 0));
         SDL_BlitSurface(background, NULL, ecran, &pos_ecran);
         afficher_objet(coins,ecran);
