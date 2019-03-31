@@ -21,7 +21,7 @@ typedef struct player
 void initialiser_objet(objet *coins,SDL_Surface *ecran);//je prend lexemple du coins et je passe en parametres l'image choisie
 void afficher_objet(objet coins,SDL_Surface *ecran);
 int bounding_box(objet coins,player mario);//type de retour entier 
-void score_vies(objet *coins,player mario);
+void score_vies(objet *coins,player *mario);
 
 #endif // FILE_H_INCLUDED
 
