@@ -22,6 +22,9 @@ void initialiser_objet(objet *coins,SDL_Surface *ecran);//je prend lexemple du c
 void afficher_objet(objet coins,SDL_Surface *ecran);
 int bounding_box(objet coins,player mario);//type de retour entier 
 void score_vies(objet *coins,player *mario);
+void deplacement_aleatoire(objet *coins);
+
+
 
 #endif // FILE_H_INCLUDED
 
