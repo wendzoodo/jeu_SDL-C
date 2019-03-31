@@ -101,3 +101,6 @@ return 1;
 }
 
 
+
+
+printf("%d",mario.mario_vies);
