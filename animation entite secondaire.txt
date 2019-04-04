@@ -1,0 +1,97 @@
+#include <stdio.h>
+#include <SDL/SDL.h>
+#include <SDL/SDL_mixer.h>
+#include <SDL/SDL_image.h>
+
+void pause ()
+{ 
+int continuer =1;
+SDL_Event event;
+while(continuer)
+{SDL_WaitEvent(&event);
+switch(event.type)
+{
+case SDL_QUIT:
+continuer =0;
+}
+}
+}
+
+void main()
+{
+SDL_Surface *ecran = NULL,*image1=NULL,*image2=NULL,*m=NULL,*m1[4],*image=NULL,*im=NULL;
+SDL_Rect pos1,pos2,mpos,rpos,pos,position;
+
+  
+int test = 1,i,j,tempsActuel=0,tempsPrecedent=0;
+SDL_Event event;
+
+SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO);
+SDL_WM_SetIcon(SDL_LoadBMP("background.bmp"),NULL);
+ecran = SDL_SetVideoMode(952,535, 32,SDL_HWSURFACE | SDL_DOUBLEBUF);
+
+
+
+	pos1.x=600;
+	pos1.y=250;
+
+	pos2.x=700;
+	pos2.y=300;
+	
+	mpos.x=0;
+	mpos.y=0;
+
+
+	image=IMG_Load("flou.png");
+	image1=IMG_Load("c1.png");
+	image2=IMG_Load("c2.png");
+
+
+
+     	SDL_FillRect(ecran,NULL,SDL_MapRGB(ecran->format,0,0,0));
+	SDL_BlitSurface(image,NULL,ecran,&mpos);
+	SDL_BlitSurface(image1,NULL,ecran,&pos1);
+	SDL_BlitSurface(image2,NULL,ecran,&pos2);
+	SDL_Flip(ecran);
+
+    while (test)
+
+    {
+
+        SDL_PollEvent(&event); 
+
+        switch(event.type)
+        {
+            case SDL_QUIT:
+                test = 0;
+                break;
+        }
+
+
+        tempsActuel = SDL_GetTicks();
+
+        if (tempsActuel - tempsPrecedent > 20) 
+
+        {
+            pos1.x=pos1.x-5;
+	    pos2.x=pos2.x-2;
+            tempsPrecedent = tempsActuel;
+        }
+	
+        SDL_FillRect(ecran, NULL, SDL_MapRGB(ecran->format, 0, 0, 0));
+        SDL_BlitSurface(image1, NULL, ecran, &pos1);
+	SDL_BlitSurface(image2, NULL, ecran, &pos2);
+        SDL_Flip(ecran);
+	
+	if(pos1.x==0)	
+	pos1.x=600;
+	if(pos2.x==0)
+	pos2.x=700;
+
+    }
+
+
+    SDL_FreeSurface(image1);
+
+    SDL_Quit();
+}
