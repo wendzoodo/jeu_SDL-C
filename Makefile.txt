@@ -1,0 +1,10 @@
+prog:test.o input.o map.o player.o 
+	gcc  input.o map.o player.o test.c -o prog -lSDL -lSDL_image -lSDL_mixer
+test.o: test.c
+	gcc -c test.c 
+input.o: input.c
+	gcc -c input.c
+map.o: map.c
+	gcc -c map.c
+player.o: player.c
+	gcc -c player.c
