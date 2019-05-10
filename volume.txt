@@ -1,0 +1,29 @@
+case SDL_MOUSEBUTTONDOWN:
+        				if ((event.button.button == SDL_BUTTON_LEFT)&&(x>=exitpos.x && x<=exitpos.x+exitpos.w+174 && y>=exitpos.y && y<=exitpos.y+exitpos.h))
+						return(0);
+					if ((event.button.button == SDL_BUTTON_LEFT)&&(x>=mute.x && x<=300 && y>=mute.y && y<=267))
+						{
+							printf("volume was    : %d\n", Mix_VolumeMusic(0));
+							printf("volume is now : %d\n", Mix_VolumeMusic(-1));
+							volact=0;
+						}
+					if ((event.button.button == SDL_BUTTON_LEFT)&&(x>=vol.x && x<=315 && y>=vol.y && y<=354))
+						{
+							printf("volume was    : %d\n", Mix_VolumeMusic(100));
+							printf("volume is now : %d\n", Mix_VolumeMusic(-1));
+							volact=100;
+						}
+					if ((event.button.button == SDL_BUTTON_LEFT)&&(x>=plus.x && x<=243 && y>=plus.y && y<=188))
+						{
+							
+							volact++;
+							printf("volume was    : %d\n", Mix_VolumeMusic(volact));
+						}
+					if ((event.button.button == SDL_BUTTON_LEFT)&&(x>=moin.x && x<=243 && y>=moin.y && y<=413))
+						{
+							
+							volact--;
+							printf("volume was    : %d\n", Mix_VolumeMusic(volact));
+						}
+				
+				}

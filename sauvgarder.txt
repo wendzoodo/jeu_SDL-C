@@ -1,0 +1,63 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <SDL/SDL_image.h>
+#include "SDL/SDL.h"
+void enregistre(int vie,int score,int x,int y,int camerax,int cameray)
+{
+ 
+    FILE *f;
+
+    f=fopen("save.txt","w");
+    if(f != NULL)
+    {
+        fprintf(f," vie : %d  score : %d x : %d y : %d camerax : %d cameray : %d \n",vie,score,x,y,camerax,cameray);
+       
+    }
+        fclose(f);
+}
+
+
+
+void sauvgarder(SDL_Surface *screen,int vie,int score,int x,int y,int camerax,int cameray)
+{
+
+	int continuer = 1;
+	SDL_Event event;
+	SDL_Surface *save;
+	SDL_Rect savepos;
+	savepos.x = 0;
+	savepos.y = 0;
+	save = IMG_Load("save.png");
+	int x1,y1;
+
+	while(continuer)
+	{
+           SDL_WaitEvent(&event);
+                {
+                        switch(event.type)
+                        {
+
+					case SDL_MOUSEBUTTONDOWN:
+                                        x1 = event.motion.x;
+                                        y1 = event.motion.y;
+					
+						
+						if ((event.button.button == SDL_BUTTON_LEFT)&&(x1>=198 && x1<=378 && y1>=267 && y1<=319))
+							continuer =0;
+						else 
+						if ((event.button.button == SDL_BUTTON_LEFT)&&(x1>=198 && x1<=378 && y1>=351 && y1<=400))
+							{
+								enregistre(vie,score,x,y,camerax,cameray);
+							}
+					break;
+						
+				
+						
+			}
+		 }
+	
+							SDL_BlitSurface(save,NULL,screen,&savepos);
+							SDL_Flip(screen);
+	}
+	
+}

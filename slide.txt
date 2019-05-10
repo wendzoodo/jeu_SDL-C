@@ -1,0 +1,11 @@
+if(direction1==10)
+			{
+				h.poshero.x+=5;
+				SDL_BlitSurface(s1,NULL,screen,&h.poshero);
+				
+								
+			}
+		if(direction1==11)
+			{	h.poshero.x-=5;
+				SDL_BlitSurface(s2,NULL,screen,&h.poshero);
+				}
